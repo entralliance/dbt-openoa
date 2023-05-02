@@ -5,6 +5,8 @@ require-dbt-version: [">=1.3.0", "<2.0.0"]
 
 config-version: 2
 
+profile: 'openoa'
+
 model-paths: ["models"]
 macro-paths: ["macros"]
 seed-paths: ["seeds"]
@@ -15,6 +17,6 @@ clean-targets:
   - "dbt_packages"
 
 vars:
-  dim_entr_asset_models: ['int_dim_entr_asset__structured']
-  dim_entr_tag_list_models: ['int_dim_entr_tag_list__structured', 'seed_entr_tag_list']
-  fct_entr_time_series_models: ['int_fct_entr_time_series__structured']
+  entr:
+    dim_entr_asset_models: ['int_dim_entr_asset__structured']
+    fct_entr_time_series_models: ['int_fct_entr_time_series__structured']
