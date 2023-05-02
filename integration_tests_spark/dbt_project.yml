@@ -1,0 +1,25 @@
+name: 'openoa_integration_tests_spark'
+version: '0.1.0'
+config-version: 2
+
+profile: 'integration_tests'
+
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
+
+model-paths: ["../integration_tests/models"]
+seed-paths: ["../integration_tests/seeds"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  +quote_columns: false
+
+vars:
+  entr:
+    dim_entr_asset_models: [seed_asset_plant, seed_asset_wind_turbine]
+    fct_entr_time_series_models: [stg_entr_era5_sample, stg_entr_merra2_sample, stg_entr_plant_sample, stg_entr_scada_sample]

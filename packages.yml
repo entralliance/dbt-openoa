@@ -1,11 +1,5 @@
 packages:
   - package: dbt-labs/dbt_utils
-    version: [">=1.0.0", "<1.1.0"]
-  - package: dbt-labs/spark_utils
-    version: [">=0.3.0", "<0.4.0"]
-  # TODO: remove dependency on dbt_date if possible
-  - package: calogica/dbt_date
-    version: [">=0.7.0", "<0.8.0"]
+    version: [">=1.0.0", "<1.2.0"]
   - git: "https://github.com/entralliance/dbt-entr.git"
-    revision: "feature/dbt-openoa_macro_reconciliation"
-    # revision: "dev"
+    revision: "dev"
