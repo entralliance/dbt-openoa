@@ -30,7 +30,7 @@ This package has been tested for compatibility with the following warehouse type
 
 ### Important note about BigQuery
 
-Some column names will appear different when materializing this package's models in BigQuery due to its incompatibility with `.` in field names:
+Some column names will appear different when materializing this package's models in BigQuery due to its incompatibility with having "`.`" in field names:
 
 * openoa_curtailment_and_availability
 * openoa_reanalysis
