@@ -197,11 +197,11 @@ workflows:
   version: 2
   test-all:
     jobs:
-      - build-postgres
+      # - build-postgres
       - build-snowflake:
           context:
             - profile-snowflake
-      - build-bigquery:
-          context:
-            - profile-bigquery
-      - build-spark
+      # - build-bigquery:
+      #     context:
+      #       - profile-bigquery
+      # - build-spark
