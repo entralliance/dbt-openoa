@@ -7,6 +7,12 @@
 with
     src as (select * from {{ ref(src_model) }}),
 
+{% if target.type == 'bigquery' %}
+    {% set quote_piv_cols = false %}
+{% else %}
+    {% set quote_piv_cols = true %}
+{% endif %}
+
 piv as (
     select
         {{ entr.jinja_list_to_sql(keys) }},
@@ -17,7 +23,7 @@ piv as (
                 then_value = 'tag_value',
                 else_value = 'null',
                 agg = 'avg',
-                quote_identifiers = true) 
+                quote_identifiers = quote_piv_cols) 
         }},
         {{  
             dbt_utils.pivot(
@@ -26,7 +32,7 @@ piv as (
                 then_value = 'flag_min_max_tag_value',
                 else_value = 'null',
                 agg = 'sum',
-                quote_identifiers = true,
+                quote_identifiers = quote_piv_cols,
                 prefix='flag_min_max_') 
         }},
         {{  
@@ -36,7 +42,7 @@ piv as (
                 then_value = 'flag_stale_tag_value',
                 else_value = 'null',
                 agg = 'sum',
-                quote_identifiers = true,
+                quote_identifiers = quote_piv_cols,
                 prefix='flag_stale_') 
         }}
     from src

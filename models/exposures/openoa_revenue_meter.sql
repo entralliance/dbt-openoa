@@ -3,6 +3,12 @@
 with
     src as (select * from {{ ref(src_model) }})
 
+{% if target.type == 'bigquery' %}
+    {% set quote_piv_cols = false %}
+{% else %}
+    {% set quote_piv_cols = true %}
+{% endif %}
+
 select
     plant_id,
     plant_name,
@@ -14,7 +20,7 @@ select
             then_value = 'tag_value',
             else_value = 'null',
             agg = 'avg',
-            quote_identifiers = true) 
+            quote_identifiers = quote_piv_cols) 
     }}
 from src
 {{ dbt_utils.group_by(n=3) }}
