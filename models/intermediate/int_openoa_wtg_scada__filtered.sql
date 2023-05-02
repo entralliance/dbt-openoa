@@ -43,7 +43,7 @@ unit_conversions as (
             2378
         ],
         operations=[
-            'case when ((tag_value % 360) + 360) % 360 > 180 then ((tag_value % 360) + 360) % 360 - 360 else ((tag_value % 360) + 360) % 360 end',
+            'case when (mod(mod(tag_value, 360) + 360), 360) > 180 then (mod( mod(tag_value, 360) + 360 ), 360) - 360 else (mod(mod(tag_value, 360) + 360), 360) end',
             'tag_value * 1000',
             'tag_value * 1000'
         ],
