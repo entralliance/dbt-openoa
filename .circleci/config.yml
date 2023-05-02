@@ -3,7 +3,7 @@ version: 2
 
 jobs:
 
-  build-postgres:
+  integration-postgres:
     docker:
       - image: cimg/python:3.9.9
       - image: circleci/postgres:9.6.5-alpine-ram
@@ -44,7 +44,7 @@ jobs:
           path: ./logs
 
 
-  build-snowflake:
+  integration-snowflake:
     docker:
       - image: cimg/python:3.9.9
 
@@ -79,7 +79,7 @@ jobs:
           path: ./logs
 
 
-  build-bigquery:
+  integration-bigquery:
     docker:
       - image: cimg/python:3.9.9
     
@@ -120,7 +120,7 @@ jobs:
           path: ./logs
 
 
-  build-spark:
+  integration-spark:
     docker:
       - image: cimg/python:3.9.9
       - image: godatadriven/spark:3.3
@@ -195,13 +195,13 @@ jobs:
 
 workflows:
   version: 2
-  test-all:
+  warehouse-integration-tests:
     jobs:
-      - build-postgres
-      - build-snowflake:
+      - integration-postgres
+      - integration-snowflake:
           context:
             - profile-snowflake
-      - build-bigquery:
+      - integration-bigquery:
           context:
             - profile-bigquery
-      - build-spark
+      - integration-spark
