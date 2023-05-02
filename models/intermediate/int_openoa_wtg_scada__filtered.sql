@@ -38,8 +38,9 @@ energy_union as (
 
 -- FIXME
 {% set _360 %}
-( cast(360 as {{dbt.type_numeric()}} ) )
+( cast( 360 as {{dbt.type_numeric()}} ) )
 {% endset %}
+
 {% set convert_winddir_sql %}
     {% if target.type == 'bigquery' %}
         case
