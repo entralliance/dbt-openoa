@@ -35,11 +35,26 @@ energy_union as (
 
     select * from power_to_energy
 ),
-            {# 'case
-                when mod( ( mod(tag_value, 360) + 360 ), 360 ) > 180 then 
-                     mod( ( mod(tag_value, 360) + 360 ), 360 ) - 360
-                else mod( ( mod(tag_value, 360), 360 ), 360 )
-            end', #}
+
+-- FIXME
+{% set _360 %}
+( cast(360 as {{dbt.type_numeric()}} ) )
+{% endset %}
+{% set convert_winddir_sql %}
+    {% if target.type == 'bigquery' %}
+        case
+            when mod( ( mod(tag_value, {{_360}} ) + {{_360}} ), {{_360}} ) > 180 then 
+                 mod( ( mod(tag_value, {{_360}} ) + {{_360}} ), {{_360}} ) - 360
+            else mod( ( mod(tag_value, {{_360}} ) + {{_360}} ), {{_360}} )
+        end
+    {% else %}
+        case 
+            when ( (tag_value % 360) + 360) % 360 > 180 then 
+                 ( (tag_value % 360) + 360) % 360 - 360
+            else ( (tag_value % 360) + 360) % 360
+        end
+    {% endif %}
+{% endset %}
 
 unit_conversions as (
     {{entr_multiple_tag_unit_conversions(
@@ -50,7 +65,7 @@ unit_conversions as (
             2378
         ],
         operations=[
-            'case when ((tag_value % 360) + 360) % 360 > 180 then ((tag_value % 360) + 360) % 360 - 360 else ((tag_value % 360) + 360) % 360 end',
+            convert_winddir_sql,
             'tag_value * 1000',
             'tag_value * 1000'
         ],
