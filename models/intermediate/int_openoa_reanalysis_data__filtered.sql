@@ -38,13 +38,20 @@ derived_wd as (
 
 derived_tags_join as (
     select
-        {% for col in src_colnames %}
-            {% if col in coalesce_fields %}
-                coalesce(src_filt.{{col}}, derived_wd.{{col}}) as {{col}}
-            {% else %}
-                {{col}}
-            {% endif %}{% if not loop.last %}, {% endif %}
-        {% endfor %}
+        plant_id,
+        reanalysis_dataset_id,
+        entr_tag_id,
+        date_time,
+        coalesce(src_filt.tag_value, derived_wd.tag_value) as tag_value,
+        interval_s,
+        coalesce(
+            cast(src_filt.value_type as {{dbt.type_string()}}),
+            cast(derived_wd.value_type as {{dbt.type_string()}})
+        ) as value_type,
+        coalesce(
+            cast(src_filt.value_units as {{dbt.type_string()}}),
+            cast(derived_wd.value_units as {{dbt.type_string()}})
+        ) as value_units
     from src_filt
     full outer join derived_wd
         using({{ entr.jinja_list_to_sql( src_colnames|reject('in', coalesce_fields)|list ) }})
