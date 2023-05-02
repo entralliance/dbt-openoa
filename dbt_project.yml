@@ -13,3 +13,8 @@ target-path: "target"
 clean-targets:
   - "target"
   - "dbt_packages"
+
+vars:
+  dim_entr_asset_models: ['int_dim_entr_asset__structured']
+  dim_entr_tag_list_models: ['int_dim_entr_tag_list__structured', 'seed_entr_tag_list']
+  fct_entr_time_series_models: ['int_fct_entr_time_series__structured']

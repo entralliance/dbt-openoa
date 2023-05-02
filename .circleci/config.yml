@@ -50,8 +50,8 @@ jobs:
 
     steps:
       - checkout
-      # - restore_cache:
-      #     key: deps_snowflake-{{ .Branch }}
+      - restore_cache:
+          key: deps_snowflake-{{ .Branch }}
       - run:
           name: "Set Up dbt"
           command: |
