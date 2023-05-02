@@ -4,6 +4,8 @@ with
     plant_dim as (select * from {{ ref('dim_asset_wind_plant') }}),
     tag_dim as (select * from {{ ref('dim_entr_tag_list') }}),
 
+power_vals as (select * from src where entr_tag_id = 2456),
+
 power_to_energy as (
     select
         wind_turbine_id,
@@ -14,7 +16,7 @@ power_to_energy as (
         'derived' as value_type,
         {{ dbt.concat(['value_units', "'h'"])}} as value_units,
         {{ dbt.concat(['standard_units', "'h'"])}} as standard_units
-    from (select * from src where entr_tag_id = 2456)
+    from power_vals
 ),
 
 energy_union as (
