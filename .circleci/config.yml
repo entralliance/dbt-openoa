@@ -201,7 +201,7 @@ workflows:
       - build-snowflake:
           context:
             - profile-snowflake
-      # - build-bigquery:
-      #     context:
-      #       - profile-bigquery
+      - build-bigquery:
+          context:
+            - profile-bigquery
       - build-spark
