@@ -6,7 +6,7 @@ with
     src as (select * from {{src_relation}}),
     reanalysis_dim as (select * from {{ ref('dim_asset_reanalysis_dataset') }}),
     plant_dim as (select * from {{ ref('dim_asset_wind_plant') }}),
-    tag_dim as (select * from {{ ref('dim_entr_tag_list') }}),
+    tag_dim as (select * from {{ ref('entr', 'dim_entr_tag_list') }}),
 
 src_filt as (
     select * from src
