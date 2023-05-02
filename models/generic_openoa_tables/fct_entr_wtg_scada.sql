@@ -1,8 +1,8 @@
 with
-    src as (select * from {{ ref("entr", "fct_entr_time_series") }}),
-    asset_dim as (select * from {{ref("entr", "dim_entr_asset")}} where asset_type = 'wtg'),
+    src as (select * from {{ ref("fct_entr_time_series") }}),
+    asset_dim as (select * from {{ref("dim_entr_asset")}} where asset_type = 'wtg'),
     tag_dim as (
-        select * from {{ref("entr", "dim_entr_tag_list")}}
+        select * from {{ref("dim_entr_tag_list")}}
         where entr_tag_name in (
             'WMET.EnvTmp',
             'WMET.HorWdDir',

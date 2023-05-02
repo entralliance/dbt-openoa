@@ -12,11 +12,4 @@ macro-paths: ["macros"]
 seed-paths: ["seeds"]
 
 target-path: "target"
-clean-targets:
-  - "target"
-  - "dbt_packages"
-
-vars:
-  entr:
-    dim_entr_asset_models: ['int_dim_entr_asset__structured']
-    fct_entr_time_series_models: ['int_fct_entr_time_series__structured']
+clean-targets: ["target", "dbt_packages"]

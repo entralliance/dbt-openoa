@@ -10,5 +10,5 @@ select
     cast(rated_power as {{ dbt.type_numeric()}}) as rated_power,
     cast(manufacturer as {{ dbt.type_string()}}) as manufacturer,
     cast(model as {{ dbt.type_string()}}) as model
-from {{ref("entr", 'dim_entr_asset')}}
+from {{ref('dim_entr_asset')}}
 where asset_type = 'wtg'

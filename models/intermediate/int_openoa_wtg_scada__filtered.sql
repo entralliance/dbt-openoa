@@ -2,7 +2,7 @@ with
     src as (select * from {{ ref('fct_entr_wtg_scada') }}),
     wtg_dim as (select * from {{ ref('dim_asset_wind_turbine') }}),
     plant_dim as (select * from {{ ref('dim_asset_wind_plant') }}),
-    tag_dim as (select * from {{ ref('entr', 'dim_entr_tag_list') }}),
+    tag_dim as (select * from {{ ref('dim_entr_tag_list') }}),
 
 power_to_energy as (
     select

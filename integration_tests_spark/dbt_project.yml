@@ -13,13 +13,13 @@ seed-paths: ["../integration_tests/seeds"]
 
 target-path: "target"
 clean-targets:
-    - "target"
-    - "dbt_packages"
+  - "target"
+  - "dbt_packages"
 
 seeds:
   +quote_columns: false
 
 vars:
-    entr:
-        dim_entr_asset_models: [seed_asset_plant, seed_asset_wind_turbine]
-        fct_entr_time_series_models: [stg_entr_era5_sample, stg_entr_merra2_sample, stg_entr_plant_sample, stg_entr_scada_sample]
+  entr:
+    dim_entr_asset_models: [seed_asset_plant, seed_asset_wind_turbine]
+    fct_entr_time_series_models: [stg_entr_era5_sample, stg_entr_merra2_sample, stg_entr_plant_sample, stg_entr_scada_sample]

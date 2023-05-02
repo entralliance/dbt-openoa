@@ -1,7 +1,7 @@
 with
     src as (select * from {{ ref('int_openoa_wtg_scada__filtered') }}),
     bounds_dim as (select * from {{ ref('seed_openoa_wtg_scada_dq_params') }}),
-    tag_dim as (select * from {{ ref('entr', 'dim_entr_tag_list') }}),
+    tag_dim as (select * from {{ ref('dim_entr_tag_list') }}),
 
 bounds as (
     select

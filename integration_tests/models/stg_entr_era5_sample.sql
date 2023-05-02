@@ -1,5 +1,5 @@
 with
-    tag_dim as (select * from {{ref('entr', 'dim_entr_tag_list')}}),
+    tag_dim as (select * from {{ref('dim_entr_tag_list')}}),
 
     map as (
         select

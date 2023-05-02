@@ -1,8 +1,8 @@
 with
     
-    tag_dim as (select * from {{ref('entr', 'dim_entr_tag_list')}}),
+    tag_dim as (select * from {{ref('dim_entr_tag_list')}}),
     
-    asset_dim as (select * from {{ref('entr', 'dim_entr_asset')}} where asset_type = 'wtg' and plant_id = 1),
+    asset_dim as (select * from {{ref('dim_entr_asset')}} where asset_type = 'wtg' and plant_id = 1),
     
     map as (
         select
