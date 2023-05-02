@@ -13,7 +13,7 @@ power_to_energy as (
         date_time,
         {{w_to_wh('tag_value')}} as tag_value,
         interval_s,
-        'derived' as value_type,
+        cast('derived' as {{dbt.type_string()}}) as value_type,
         {{ dbt.concat(['value_units', "'h'"])}} as value_units,
         {{ dbt.concat(['standard_units', "'h'"])}} as standard_units
     from power_vals
