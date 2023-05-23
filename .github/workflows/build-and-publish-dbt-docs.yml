@@ -46,7 +46,6 @@ jobs:
           dbt deps --profile integration_tests --target docs
           dbt build --profile integration_tests --target docs
           dbt docs generate --profile integration_tests --target docs
-          cp -r target ../target
       
       - name: Set Up Pages
         uses: actions/configure-pages@v2
