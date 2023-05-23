@@ -43,6 +43,7 @@ jobs:
           cp integration_tests/ci/sample.profiles.yml integration_tests/profiles.yml
           dbt debug --profile integration_tests --target docs
           dbt deps --profile integration_tests --target docs
+          dbt build --profile integration_tests --target docs
           dbt docs generate --profile integration_tests --target docs
       
       - name: Set Up Pages
