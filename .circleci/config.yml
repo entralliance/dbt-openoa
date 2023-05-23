@@ -245,6 +245,9 @@ workflows:
       - integration-postgres:
           requires:
             - hold
+      - integration-min-dbt-version:
+          requires:
+            - integration-postgres
       - integration-snowflake:
           context: profile-snowflake
           requires:
