@@ -41,6 +41,7 @@ jobs:
       - name: Test connection, install packages, and generate docs_project
         run: |
           cp integration_tests/ci/sample.profiles.yml integration_tests/profiles.yml
+          cd integration_tests
           dbt debug --profile integration_tests --target docs
           dbt deps --profile integration_tests --target docs
           dbt build --profile integration_tests --target docs
