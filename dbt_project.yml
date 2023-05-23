@@ -1,15 +1,10 @@
 name: 'openoa'
-version: '0.1.0'
-
+version: '0.0.1'
 require-dbt-version: [">=1.3.0", "<2.0.0"]
-
 config-version: 2
-
 profile: 'openoa'
-
 model-paths: ["models"]
 macro-paths: ["macros"]
 seed-paths: ["seeds"]
-
 target-path: "target"
 clean-targets: ["target", "dbt_packages"]

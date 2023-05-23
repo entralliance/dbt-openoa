@@ -1,0 +1,87 @@
+name: Bug Report
+description: Report a bug or issue you've encountered
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        Please tell us more about the issue you're having by filling in the information below.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Please describe the bug
+      description: Include reproducibility steps
+    validations:
+      required: true
+
+  - type: dropdown
+    id: db-type
+    attributes:
+      label: Which database are you using dbt with?
+      options:
+        - Postgres
+        - BigQuery
+        - Snowflake
+        - Databricks
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: other-db
+    attributes:
+      label: "If other, please specify:"
+      placeholder: e.g. Azure Synapse
+    validations:
+      required: false
+
+  - type: input
+    id: package-version
+    attributes:
+      label: Package Version
+      placeholder: e.g. 0.1.0
+      description: What version of this package are you using?
+    validations:
+      required: true
+
+  - type: input
+    id: dbt-version
+    attributes:
+      label: dbt Version
+      placeholder: The output of `dbt --version`
+    validations:
+      required: true
+  
+  - type: textarea
+    id: expected-results
+    attributes:
+      label: What were you expecting to happen?
+      description: Include any relevant details and reproducibility steps
+    validations:
+      required: false
+
+  - type: textarea
+    id: actual-results
+    attributes:
+      label: What actually happened?
+      description: Include any relevant details and reproducibility steps
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Please provide any additional context
+      description: Include any relevant details and reproducibility steps
+    validations:
+      required: false
