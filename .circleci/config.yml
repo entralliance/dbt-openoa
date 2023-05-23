@@ -1,5 +1,5 @@
 
-version: 2
+version: 2.1
 
 jobs:
 
@@ -86,7 +86,7 @@ jobs:
     steps:
       - checkout
       - run:
-          run: setup_creds
+          name: "Set Up GCP Credentials"
           command: |
             echo $BIGQUERY_SERVICE_ACCOUNT_JSON > ${HOME}/bigquery-service-key.json
       - restore_cache:
@@ -197,11 +197,19 @@ workflows:
   version: 2
   warehouse-integration-tests:
     jobs:
-      - integration-postgres
+      - hold:
+          type: approval
+      - integration-postgres:
+          requires:
+            - hold
       - integration-snowflake:
-          context:
-            - profile-snowflake
+          context: profile-snowflake
+          requires:
+            - hold
       - integration-bigquery:
-          context:
-            - profile-bigquery
-      - integration-spark
+          context: profile-bigquery
+          requires:
+            - hold
+      - integration-spark:
+          requires:
+            - hold
