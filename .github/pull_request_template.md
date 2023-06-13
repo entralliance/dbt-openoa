@@ -27,3 +27,4 @@ Describe your changes, and why you're making them.
     - [ ] dispatching any new macro(s) so non-core adapters can also use them (e.g. [the `star()` source](https://github.com/dbt-labs/dbt-utils/blob/main/macros/sql/star.sql))
 - [ ] I have updated the README.md (if applicable)
 - [ ] I have added tests & descriptions to my models (and macros if applicable)
+- [ ] I have read the ENTR Foundation's [contributing guide](https://entralliance.github.io/getting_involved.html#contributing) and signed the [Contributor License Agreement](https://docs.google.com/forms/d/e/1FAIpQLSe4Idku1IEvjEUqbxYby-vDI5BmESSJC0m1xeQUuEssRtODNQ/viewform?usp=sharing) (CLA).
