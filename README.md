@@ -78,7 +78,7 @@ In order to successfully run all models in this package, the following data must
     - manufacturer: the name of the turbine manufacturer
     - model: the name of the turbine model
 
-- At least one record of time series data for the following tags (see the `dim_entr_tag_list` table produced by the `dbt-entr` package or the file [here](https://github.com/entralliance/dbt-entr/blob/main/seeds/seed_entr_tag_list.csv) for tag descriptions):
+- At least one record of time series data for the following tags (see the `dim_entr_tag_list` table produced by the `dbt-entr` package or the [ENTR standard tag list seed file](https://github.com/entralliance/dbt-entr/blob/main/seeds/seed_entr_tag_list.csv) for tag descriptions):
     - Wind turbine SCADA tags:
         - WMET.EnvTmp
         - WMET.HorWdDir
