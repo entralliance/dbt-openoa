@@ -60,25 +60,11 @@ models:
 
 In order to successfully run all models in this package, the following data must be present `dim_entr_asset` (i.e. models listed in the `dim_entr_asset_models` project variable):
 
-- At least one asset of type `plant` (a wind energy plant) containing the following fields:
-    - latitude: the latitude in decimal degrees of centroid coordinates for the plant
-    - longitude: the longitude in decimal degrees of centroid coordinates for the plant
-    - plant_capacity: the nameplate capacity of the plant in MW
-    - number_of_turbines: the number of turbines contained within the plant
-    - turbine_capacity: the average nominal power output of the turbines within the plant
+- At least one asset of type `plant` (a wind energy plant) containing columns included in the [`dim_asset_wind_plant` dbt-openoa project docs](https://entralliance.github.io/dbt-openoa/#!/model/model.openoa.dim_asset_wind_plant).
 
-- At least one asset of type `wtg` (a wind turbine generator) containing the following fields:
-    - plant_id: the asset ID of the plant in which this turbine resides
-    - latitude: the latitude in decimal degrees of the turbine
-    - longitude: the longitude in decimal degrees of the turbine
-    - elevation: the height above sea level of the base of the turbine
-    - hub_height: the height above ground level of the hub of the turbine
-    - rotor_diameter: the turbine's rotor diameter
-    - rated_power: the nominal power output of the turbine
-    - manufacturer: the name of the turbine manufacturer
-    - model: the name of the turbine model
+- At least one asset of type `wtg` (a wind turbine generator) containing columns included in the [`dim_asset_wind_turbine` dbt-openoa project docs](https://entralliance.github.io/dbt-openoa/#!/model/model.openoa.dim_asset_wind_turbine).
 
-- At least one record of time series data for the following tags (see the `dim_entr_tag_list` table produced by the `dbt-entr` package or the [ENTR standard tag list seed file](https://github.com/entralliance/dbt-entr/blob/main/seeds/seed_entr_tag_list.csv) for tag descriptions):
+- At least one record of time series data for each of the following tags (see the `dim_entr_tag_list` table produced by the `dbt-entr` package or the [ENTR standard tag list seed file](https://github.com/entralliance/dbt-entr/blob/main/seeds/seed_entr_tag_list.csv) for tag descriptions) - models containing these time series data must be included in the `fct_entr_time_series_models` list in your dbt_project.yml:
     - Wind turbine SCADA tags:
         - WMET.EnvTmp
         - WMET.HorWdDir
@@ -100,7 +86,7 @@ In order to successfully run all models in this package, the following data must
         - IAVL.ExtPwrDnWh
         - MMTR.SupWh
 
-For example data and configuration, please see the `entr-warehouse` reference dbt project for example data and configuration.
+For example data and configuration, please see the [`entr-warehouse` reference dbt project](https://github.com/entralliance/entr_warehouse) for example data and configuration.
 
 ### Important note about BigQuery
 
